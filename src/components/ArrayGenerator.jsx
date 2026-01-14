@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const ArrayGenerator = () => {
+const ArrayGenerator = ({ t }) => {
   const [inputText, setInputText] = useState('');
   const [outputs, setOutputs] = useState({
     doubleQuote: '[]',
@@ -47,7 +47,7 @@ const ArrayGenerator = () => {
     <div className="generator-container">
       <div className="input-section">
         <div className="input-header">
-          <label htmlFor="input-text" className="section-label">Input Text List</label>
+          <label htmlFor="input-text" className="section-label">{t.inputLabel}</label>
           <div className="action-buttons">
             <button
               onClick={() => {
@@ -56,9 +56,9 @@ const ArrayGenerator = () => {
                 setInputText(trimmedLines.join('\n'));
               }}
               className="action-btn"
-              title="Remove leading and trailing whitespace"
+              title={t.trimTitle}
             >
-              Trim Elements
+              {t.trim}
             </button>
             <button
               onClick={() => {
@@ -67,16 +67,16 @@ const ArrayGenerator = () => {
                 setInputText(uniqueLines.join('\n'));
               }}
               className="action-btn"
-              title="Remove duplicates from the list"
+              title={t.deduplicateTitle}
             >
-              Remove Duplicates
+              {t.deduplicate}
             </button>
             <button
               onClick={() => setIncludeBrackets(!includeBrackets)}
               className={`action-btn ${!includeBrackets ? 'active' : ''}`}
-              title="Toggle square brackets in output"
+              title={t.toggleBracketsTitle}
             >
-              {includeBrackets ? 'Remove Brackets' : 'Add Brackets'}
+              {includeBrackets ? t.removeBrackets : t.addBrackets}
             </button>
           </div>
         </div>
@@ -84,7 +84,7 @@ const ArrayGenerator = () => {
           id="input-text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder="Enter your list here...&#10;One item per line"
+          placeholder={t.placeholder}
           className="input-textarea"
           spellCheck="false"
         />
@@ -92,46 +92,49 @@ const ArrayGenerator = () => {
 
       <div className="output-section">
         <OutputBlock
-          label="Double Quotes Array"
+          label={t.doubleQuoteLabel}
           content={outputs.doubleQuote}
           onCopy={() => handleCopy(outputs.doubleQuote, 'double')}
           isCopied={copiedState === 'double'}
+          t={t}
         />
         <OutputBlock
-          label="Single Quotes Array"
+          label={t.singleQuoteLabel}
           content={outputs.singleQuote}
           onCopy={() => handleCopy(outputs.singleQuote, 'single')}
           isCopied={copiedState === 'single'}
+          t={t}
         />
         <OutputBlock
-          label="Original Text Array"
+          label={t.originalLabel}
           content={outputs.original}
           onCopy={() => handleCopy(outputs.original, 'original')}
           isCopied={copiedState === 'original'}
+          t={t}
         />
       </div>
     </div>
   );
 };
 
-const OutputBlock = ({ label, content, onCopy, isCopied }) => (
+const OutputBlock = ({ label, content, onCopy, isCopied, t }) => (
   <div className="output-block">
     <div className="output-header">
       <span className="output-label">{label}</span>
       <button
         className={`copy-btn ${isCopied ? 'copied' : ''}`}
         onClick={onCopy}
-        aria-label={`Copy ${label}`}
+        aria-label={`${t.copy} ${label}`}
       >
         {isCopied ? (
           <>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Copied!
+            {t.copied}
           </>
         ) : (
           <>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            Copy
+            {t.copy}
           </>
         )}
       </button>
