@@ -11,7 +11,7 @@ const ArrayGenerator = () => {
 
   useEffect(() => {
     const lines = inputText.split('\n').filter((line) => line.trim() !== '');
-    
+
     if (lines.length === 0) {
       setOutputs({
         doubleQuote: '[]',
@@ -41,7 +41,20 @@ const ArrayGenerator = () => {
   return (
     <div className="generator-container">
       <div className="input-section">
-        <label htmlFor="input-text" className="section-label">Input Text List</label>
+        <div className="input-header">
+          <label htmlFor="input-text" className="section-label">Input Text List</label>
+          <button
+            onClick={() => {
+              const lines = inputText.split('\n');
+              const uniqueLines = [...new Set(lines)];
+              setInputText(uniqueLines.join('\n'));
+            }}
+            className="action-btn"
+            title="Remove duplicates from the list"
+          >
+            Remove Duplicates
+          </button>
+        </div>
         <textarea
           id="input-text"
           value={inputText}
@@ -80,8 +93,8 @@ const OutputBlock = ({ label, content, onCopy, isCopied }) => (
   <div className="output-block">
     <div className="output-header">
       <span className="output-label">{label}</span>
-      <button 
-        className={`copy-btn ${isCopied ? 'copied' : ''}`} 
+      <button
+        className={`copy-btn ${isCopied ? 'copied' : ''}`}
         onClick={onCopy}
         aria-label={`Copy ${label}`}
       >
