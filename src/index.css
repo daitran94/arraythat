@@ -44,9 +44,9 @@ body {
 }
 
 .app-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
   position: relative;
   /* Context for absolute positioning */
