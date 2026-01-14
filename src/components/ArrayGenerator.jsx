@@ -43,17 +43,30 @@ const ArrayGenerator = () => {
       <div className="input-section">
         <div className="input-header">
           <label htmlFor="input-text" className="section-label">Input Text List</label>
-          <button
-            onClick={() => {
-              const lines = inputText.split('\n');
-              const uniqueLines = [...new Set(lines)];
-              setInputText(uniqueLines.join('\n'));
-            }}
-            className="action-btn"
-            title="Remove duplicates from the list"
-          >
-            Remove Duplicates
-          </button>
+          <div className="action-buttons">
+            <button
+              onClick={() => {
+                const lines = inputText.split('\n');
+                const trimmedLines = lines.map(line => line.trim());
+                setInputText(trimmedLines.join('\n'));
+              }}
+              className="action-btn"
+              title="Remove leading and trailing whitespace"
+            >
+              Trim Elements
+            </button>
+            <button
+              onClick={() => {
+                const lines = inputText.split('\n');
+                const uniqueLines = [...new Set(lines)];
+                setInputText(uniqueLines.join('\n'));
+              }}
+              className="action-btn"
+              title="Remove duplicates from the list"
+            >
+              Remove Duplicates
+            </button>
+          </div>
         </div>
         <textarea
           id="input-text"
