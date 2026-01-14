@@ -9,6 +9,11 @@ const ArrayGenerator = ({ t }) => {
   });
   const [includeBrackets, setIncludeBrackets] = useState(true);
   const [copiedState, setCopiedState] = useState(null);
+  const [selectedOutputs, setSelectedOutputs] = useState({
+    doubleQuote: true,
+    singleQuote: true,
+    original: true,
+  });
 
   useEffect(() => {
     const lines = inputText.split('\n').filter((line) => line.trim() !== '');
@@ -91,27 +96,63 @@ const ArrayGenerator = ({ t }) => {
       </div>
 
       <div className="output-section">
-        <OutputBlock
-          label={t.doubleQuoteLabel}
-          content={outputs.doubleQuote}
-          onCopy={() => handleCopy(outputs.doubleQuote, 'double')}
-          isCopied={copiedState === 'double'}
-          t={t}
-        />
-        <OutputBlock
-          label={t.singleQuoteLabel}
-          content={outputs.singleQuote}
-          onCopy={() => handleCopy(outputs.singleQuote, 'single')}
-          isCopied={copiedState === 'single'}
-          t={t}
-        />
-        <OutputBlock
-          label={t.originalLabel}
-          content={outputs.original}
-          onCopy={() => handleCopy(outputs.original, 'original')}
-          isCopied={copiedState === 'original'}
-          t={t}
-        />
+        <div className="output-options">
+          <span className="section-label">{t.outputOptionsLabel}</span>
+          <div className="options-group">
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={selectedOutputs.doubleQuote}
+                onChange={() => setSelectedOutputs(prev => ({ ...prev, doubleQuote: !prev.doubleQuote }))}
+              />
+              {t.doubleQuoteLabel}
+            </label>
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={selectedOutputs.singleQuote}
+                onChange={() => setSelectedOutputs(prev => ({ ...prev, singleQuote: !prev.singleQuote }))}
+              />
+              {t.singleQuoteLabel}
+            </label>
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={selectedOutputs.original}
+                onChange={() => setSelectedOutputs(prev => ({ ...prev, original: !prev.original }))}
+              />
+              {t.originalLabel}
+            </label>
+          </div>
+        </div>
+
+        {selectedOutputs.doubleQuote && (
+          <OutputBlock
+            label={t.doubleQuoteLabel}
+            content={outputs.doubleQuote}
+            onCopy={() => handleCopy(outputs.doubleQuote, 'double')}
+            isCopied={copiedState === 'double'}
+            t={t}
+          />
+        )}
+        {selectedOutputs.singleQuote && (
+          <OutputBlock
+            label={t.singleQuoteLabel}
+            content={outputs.singleQuote}
+            onCopy={() => handleCopy(outputs.singleQuote, 'single')}
+            isCopied={copiedState === 'single'}
+            t={t}
+          />
+        )}
+        {selectedOutputs.original && (
+          <OutputBlock
+            label={t.originalLabel}
+            content={outputs.original}
+            onCopy={() => handleCopy(outputs.original, 'original')}
+            isCopied={copiedState === 'original'}
+            t={t}
+          />
+        )}
       </div>
     </div>
   );

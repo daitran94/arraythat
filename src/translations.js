@@ -18,7 +18,8 @@ export const translations = {
         copied: "Copied!",
         footer: "Developed by",
         themeToggleLabel: (mode) => `Switch to ${mode} mode`,
-        langToggleLabel: "Switch language"
+        langToggleLabel: "Switch language",
+        outputOptionsLabel: "Select Output Formats"
     },
     vn: {
         title: "ArrayThat",
@@ -39,6 +40,7 @@ export const translations = {
         copied: "Đã chép!",
         footer: "Phát triển bởi",
         themeToggleLabel: (mode) => `Chuyển sang chế độ ${mode}`,
-        langToggleLabel: "Đổi ngôn ngữ"
+        langToggleLabel: "Đổi ngôn ngữ",
+        outputOptionsLabel: "Chọn định dạng đầu ra"
     }
 };
