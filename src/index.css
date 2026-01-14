@@ -71,6 +71,11 @@ body {
   .generator-container {
     grid-template-columns: 1fr 1fr;
   }
+
+  .output-section {
+    padding-top: 2.2rem;
+    /* Align with textarea below the input header */
+  }
 }
 
 .section-label {

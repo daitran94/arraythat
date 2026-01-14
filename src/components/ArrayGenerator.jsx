@@ -21,9 +21,9 @@ const ArrayGenerator = () => {
       return;
     }
 
-    const doubleQuote = `[${lines.map((line) => `"${line}"`).join(', ')}]`;
-    const singleQuote = `[${lines.map((line) => `'${line}'`).join(', ')}]`;
-    const original = `[${lines.join(', ')}]`;
+    const doubleQuote = `[${lines.map((line) => `"${line}"`).join(',')}]`;
+    const singleQuote = `[${lines.map((line) => `'${line}'`).join(',')}]`;
+    const original = `[${lines.join(',')}]`;
 
     setOutputs({
       doubleQuote,
