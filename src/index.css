@@ -3,8 +3,10 @@
   --bg-secondary: #1e293b;
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --accent-color: #6366f1; /* Indigo 500 */
-  --accent-hover: #4f46e5; /* Indigo 600 */
+  --accent-color: #6366f1;
+  /* Indigo 500 */
+  --accent-hover: #4f46e5;
+  /* Indigo 600 */
   --border-color: #334155;
   --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -89,7 +91,8 @@ body {
   border-radius: 0.75rem;
   padding: 1rem;
   color: var(--text-primary);
-  font-family: 'JetBrains Mono', monospace; /* Monospace for code-like input */
+  font-family: 'JetBrains Mono', monospace;
+  /* Monospace for code-like input */
   font-size: 0.95rem;
   resize: none;
   transition: all 0.2s ease;
@@ -159,8 +162,10 @@ body {
 }
 
 .copy-btn.copied {
-  background-color: rgba(16, 185, 129, 0.1); /* Emerald 500 tint */
-  color: #34d399; /* Emerald 400 */
+  background-color: rgba(16, 185, 129, 0.1);
+  /* Emerald 500 tint */
+  color: #34d399;
+  /* Emerald 400 */
   border-color: #059669;
 }
 
@@ -191,4 +196,25 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
+}
+
+.footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.footer-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
 }
