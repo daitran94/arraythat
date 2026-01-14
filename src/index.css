@@ -129,7 +129,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  max-width: 80%;
+  max-width: 95%;
   margin: 0 auto;
 }
 
