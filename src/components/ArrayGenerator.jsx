@@ -11,8 +11,8 @@ const ArrayGenerator = ({ t }) => {
   const [copiedState, setCopiedState] = useState(null);
   const [selectedOutputs, setSelectedOutputs] = useState({
     doubleQuote: true,
-    singleQuote: true,
-    original: true,
+    singleQuote: false,
+    original: false,
   });
 
   useEffect(() => {
