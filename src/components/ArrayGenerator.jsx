@@ -7,6 +7,7 @@ const ArrayGenerator = () => {
     singleQuote: '[]',
     original: '[]',
   });
+  const [includeBrackets, setIncludeBrackets] = useState(true);
   const [copiedState, setCopiedState] = useState(null);
 
   useEffect(() => {
@@ -21,16 +22,20 @@ const ArrayGenerator = () => {
       return;
     }
 
-    const doubleQuote = `[${lines.map((line) => `"${line}"`).join(',')}]`;
-    const singleQuote = `[${lines.map((line) => `'${line}'`).join(',')}]`;
-    const original = `[${lines.join(',')}]`;
+    const content = lines.join(',');
+    const doubleQuoteContent = lines.map((line) => `"${line}"`).join(',');
+    const singleQuoteContent = lines.map((line) => `'${line}'`).join(',');
+
+    const doubleQuote = includeBrackets ? `[${doubleQuoteContent}]` : doubleQuoteContent;
+    const singleQuote = includeBrackets ? `[${singleQuoteContent}]` : singleQuoteContent;
+    const original = includeBrackets ? `[${content}]` : content;
 
     setOutputs({
       doubleQuote,
       singleQuote,
       original,
     });
-  }, [inputText]);
+  }, [inputText, includeBrackets]);
 
   const handleCopy = (text, key) => {
     navigator.clipboard.writeText(text);
@@ -65,6 +70,13 @@ const ArrayGenerator = () => {
               title="Remove duplicates from the list"
             >
               Remove Duplicates
+            </button>
+            <button
+              onClick={() => setIncludeBrackets(!includeBrackets)}
+              className={`action-btn ${!includeBrackets ? 'active' : ''}`}
+              title="Toggle square brackets in output"
+            >
+              {includeBrackets ? 'Remove Brackets' : 'Add Brackets'}
             </button>
           </div>
         </div>
