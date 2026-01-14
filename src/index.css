@@ -255,10 +255,14 @@ body {
   padding: 1rem;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.9rem;
-  color: #e2e8f0;
+  color: var(--text-primary);
   word-break: break-all;
   max-height: 150px;
   overflow-y: auto;
+}
+
+[data-theme='light'] .output-content {
+  color: #000000;
 }
 
 /* Scrollbar styling */
