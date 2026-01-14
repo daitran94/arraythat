@@ -58,7 +58,7 @@ function App() {
       </main>
       <footer className="footer">
         <p>
-          {t.footer} <a href="https://github.com/daitran94" target="_blank" rel="noopener noreferrer" className="footer-link">daitran94</a>
+          {t.footer} <a href="https://github.com/quocdaitrn" target="_blank" rel="noopener noreferrer" className="footer-link">daitran94</a>
         </p>
       </footer>
     </div>
