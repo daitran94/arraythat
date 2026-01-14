@@ -48,6 +48,8 @@ body {
   margin: 0 auto;
   padding: 2rem;
   width: 100%;
+  position: relative;
+  /* Context for absolute positioning */
 }
 
 .header {
@@ -55,26 +57,23 @@ body {
   margin-bottom: 3rem;
 }
 
-.title-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-
 .theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  /* Slightly larger for easier clicking */
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .theme-toggle:hover {
