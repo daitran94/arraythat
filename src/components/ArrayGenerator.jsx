@@ -7,11 +7,11 @@ const ArrayGenerator = ({ t }) => {
     singleQuote: '[]',
     original: '[]',
   });
-  const [includeBrackets, setIncludeBrackets] = useState(true);
+  const [includeBrackets, setIncludeBrackets] = useState(false);
   const [copiedState, setCopiedState] = useState(null);
   const [selectedOutputs, setSelectedOutputs] = useState({
-    doubleQuote: true,
-    singleQuote: false,
+    doubleQuote: false,
+    singleQuote: true,
     original: false,
   });
   const textareaRef = useRef(null);
