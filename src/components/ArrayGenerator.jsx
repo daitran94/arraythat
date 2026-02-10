@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const ArrayGenerator = ({ t }) => {
   const [inputText, setInputText] = useState('');
@@ -14,6 +14,7 @@ const ArrayGenerator = ({ t }) => {
     singleQuote: false,
     original: false,
   });
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const lines = inputText.split('\n').filter((line) => line.trim() !== '');
@@ -85,14 +86,35 @@ const ArrayGenerator = ({ t }) => {
             </button>
           </div>
         </div>
-        <textarea
-          id="input-text"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          placeholder={t.placeholder}
-          className="input-textarea"
-          spellCheck="false"
-        />
+        <div className="textarea-wrapper">
+          <div
+            className="line-numbers"
+            ref={(el) => {
+              if (el && textareaRef.current) {
+                el.scrollTop = textareaRef.current.scrollTop;
+              }
+            }}
+          >
+            {Array.from({ length: Math.max(inputText.split('\n').length, 1) }, (_, i) => (
+              <div key={i + 1} className="line-number">{i + 1}</div>
+            ))}
+          </div>
+          <textarea
+            ref={textareaRef}
+            id="input-text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onScroll={(e) => {
+              const lineNumbers = e.target.previousSibling;
+              if (lineNumbers) {
+                lineNumbers.scrollTop = e.target.scrollTop;
+              }
+            }}
+            placeholder={t.placeholder}
+            className="input-textarea"
+            spellCheck="false"
+          />
+        </div>
       </div>
 
       <div className="output-section">
